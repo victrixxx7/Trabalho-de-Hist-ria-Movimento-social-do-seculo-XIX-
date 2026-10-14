@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimentos Sociais do Século XIX</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .apresentacao {
+            width: 100%;
+            max-width: 900px;
+            background: #19263b;
+            border: 1px solid #334967;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px #0006;
+        }
+
+        .barra {
+            background: #111c2d;
+            padding: 15px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334967;
+        }
+
+        .barra strong {
+            color: #70a5ff;
+            font-size: 14px;
+        }
+
+        .contador {
+            color: #b9c8dd;
+            font-size: 13px;
+        }
+
+        .slide {
+            display: none;
+            min-height: 430px;
+            padding: 45px;
+            animation: aparecer .3s ease;
+        }
+
+        .slide.ativo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .etiqueta {
+            color: #70a5ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(30px, 6vw, 52px);
+            line-height: 1.15;
+            margin-bottom: 22px;
+        }
+
+        h2 {
+            color: #8bb5ff;
+            font-size: clamp(24px, 4vw, 36px);
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #8bb5ff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #d2dceb;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            color: #d2dceb;
+            font-size: 16px;
+            line-height: 1.7;
+            padding: 9px 12px;
+            margin: 8px 0;
+            background: #22334d;
+            border-left: 3px solid #70a5ff;
+            border-radius: 4px;
+        }
+
+        .destaque {
+            color: #70a5ff;
+            font-weight: bold;
+        }
+
+        .grade {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .cartao {
+            padding: 20px;
+            border-radius: 12px;
+            background: #22334d;
+            border: 1px solid #334967;
+        }
+
+        .cartao p {
+            font-size: 15px;
+        }
+
+        .numero {
+            font-size: 32px;
+            font-weight: bold;
+            color: #70a5ff;
+            margin-bottom: 8px;
+        }
+
+        .pergunta {
+            font-size: 22px;
+            line-height: 1.6;
+        }
+
+        .controles {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 18px 22px;
+            background: #111c2d;
+            border-top: 1px solid #334967;
+        }
+
+        button {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: #3478f6;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #35445a;
+            color: #8290a4;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background: #5590ff;
+        }
+
+        .progresso {
+            height: 4px;
+            background: #26354a;
+        }
+
+        #barraProgresso {
+            height: 100%;
+            width: 0;
+            background: #70a5ff;
+            transition: width .3s;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .slide {
+                min-height: 450px;
+                padding: 25px 20px;
+            }
+
+            .grade {
+                grid-template-columns: 1fr;
+            }
+
+            .cartoes li {
+                font-size: 14px;
+            }
+
+            .controles {
+                padding: 14px;
+            }
+
+            button {
+                padding: 12px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="apresentacao">
+
+    <div class="barra">
+        <strong>HISTÓRIA • SÉCULO XIX</strong>
+        <span class="contador" id="contador">1 / 25</span>
+    </div>
+
+    <div class="progresso">
+        <div id="barraProgresso"></div>
+    </div>
+
+    <main id="slides">
+
+        <section class="slide ativo">
+            <span class="etiqueta">Apresentação de História</span>
+            <h1>Movimentos Sociais do Século XIX</h1>
+            <p>Lutas, ideologias e transformações na Era Industrial.</p>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Introdução</span>
+            <h2>O que vamos aprender hoje?</h2>
+            <ul>
+                <li>A Revolução Industrial e o trabalho</li>
+                <li>O Movimento Ludista</li>
+                <li>O Cartismo e os direitos políticos</li>
+                <li>Socialismo utópico e científico</li>
+                <li>Anarquismo e doutrina social</li>
+                <li>O surgimento dos sindicatos</li>
+                <li>As revoluções de 1848</li>
+                <li>O legado dos movimentos sociais</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Contexto histórico</span>
+            <h2>O cenário da Revolução Industrial</h2>
+            <p>No século XIX, a rápida industrialização transformou as cidades europeias.</p>
+            <p>Embora a produção tenha aumentado, as condições de vida da classe operária eram precárias, com moradias superlotadas e falta de saneamento básico.</p>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Condições de trabalho</span>
+            <h2>Fábricas vs. propostas de mudança</h2>
+            <div class="grade">
+                <div class="cartao">
+                    <h3>🏭 Realidade nas fábricas</h3>
+                    <p>Jornadas de até 16 horas.</p>
+                    <p>Ambientes perigosos.</p>
+                    <p>Trabalho infantil e feminino mal pago.</p>
+                    <p>Ausência de direitos trabalhistas.</p>
+                </div>
+                <div class="cartao">
+                    <h3>✊ Propostas sociais</h3>
+                    <p>Redução da jornada de trabalho.</p>
+                    <p>Proibição do trabalho infantil.</p>
+                    <p>Salários dignos e segurança.</p>
+                    <p>Direito à organização e à greve.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Movimentos operários</span>
+            <h2>O Ludismo: a revolta das máquinas</h2>
+            <p>Os trabalhadores viam as máquinas como responsáveis pelo desemprego.</p>
+            <ul>
+                <li>O movimento envolvia a destruição de teares mecânicos.</li>
+                <li>Seu nome deriva do lendário Ned Ludd.</li>
+                <li>O governo inglês reprimiu severamente os participantes.</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Direitos políticos</span>
+            <h2>O Cartismo</h2>
+            <div class="grade">
+                <div class="cartao">
+                    <h3>1. A Carta do Povo</h3>
+                    <p>Documento que exigia reformas políticas, incluindo o sufrágio universal masculino.</p>
+                </div>
+                <div class="cartao">
+                    <h3>2. Mobilização</h3>
+                    <p>Milhões de assinaturas foram reunidas em petições.</p>
+                </div>
+                <div class="cartao">
+                    <h3>3. Reivindicações</h3>
+                    <p>Voto secreto e fim dos critérios de renda para candidaturas.</p>
+                </div>
+                <div class="cartao">
+                    <h3>4. Conquistas</h3>
+                    <p>Apesar das rejeições iniciais, o movimento ajudou a impulsionar reformas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Para refletir</span>
+            <h2>Uma pergunta importante</h2>
+            <p class="pergunta">Por que os operários acreditavam que ter direito ao voto poderia mudar sua situação nas fábricas?</p>
+            <p>Pense na relação entre leis, representação política e condições de trabalho.</p>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Ideologias</span>
+            <h2>Socialismo utópico</h2>
+            <div class="grade">
+                <div class="cartao">
+                    <h3>Robert Owen</h3>
+                    <p>Defendeu melhores condições de trabalho e educação para os filhos dos operários.</p>
+                </div>
+                <div class="cartao">
+                    <h3>Saint-Simon</h3>
+                    <p>Propôs uma sociedade organizada por produtores, cientistas e industriais.</p>
+                </div>
+                <div class="cartao">
+                    <h3>Charles Fourier</h3>
+                    <p>Propôs os falanstérios, comunidades cooperativas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Ideologias</span>
+            <h2>Socialismo científico: Marx e Engels</h2>
+            <ul>
+                <li>Análise crítica do capitalismo e da luta de classes.</li>
+                <li>O conceito de mais-valia explica a apropriação de parte do valor produzido pelo trabalhador.</li>
+                <li>Defesa da transformação revolucionária da sociedade.</li>
+                <li>Publicação do Manifesto Comunista em 1848.</li>
+                <li>Proposta de uma sociedade sem classes sociais.</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Conceito econômico</span>
+            <h2>Entendendo a mais-valia</h2>
+            <div class="cartao">
+                <p class="pergunta">Mais-valia = valor produzido − salário</p>
+                <p>Na teoria de Marx, a diferença entre o valor produzido pelo trabalhador e o salário recebido é apropriada pelo proprietário dos meios de produção.</p>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Ideologias</span>
+            <h2>Anarquismo: ordem sem Estado</h2>
+            <div class="grade">
+                <div class="cartao">
+                    <h3>Princípios</h3>
+                    <p>Crítica às hierarquias e às autoridades coercitivas.</p>
+                    <p>Defesa da autogestão e da liberdade.</p>
+                    <p>Organização voluntária da sociedade.</p>
+                </div>
+                <div class="cartao">
+                    <h3>Principais teóricos</h3>
+                    <p>Pierre-Joseph Proudhon</p>
+                    <p>Mikhail Bakunin</p>
+                    <p>Piotr Kropotkin</p>
+                    <p>Errico Malatesta</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Pensamento político</span>
+            <h2>Uma frase de Proudhon</h2>
+            <p class="pergunta">“A propriedade é um roubo!”</p>
+            <p class="destaque">Pierre-Joseph Proudhon</p>
+            <p>A frase expressa sua crítica à propriedade privada dos meios de produção e às desigualdades sociais.</p>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Religião e sociedade</span>
+            <h2>Doutrina Social da Igreja</h2>
+            <ul>
+                <li>A encíclica Rerum Novarum foi publicada em 1891 pelo papa Leão XIII.</li>
+                <li>Criticou aspectos da exploração dos trabalhadores.</li>
+                <li>Defendeu a propriedade privada e sua responsabilidade social.</li>
+                <li>Propôs justiça social e colaboração entre patrões e empregados.</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Comparação</span>
+            <h2>Comparação das ideologias</h2>
+            <div class="cartao">
+                <h3>Socialismo</h3>
+                <p>Defende a transformação das relações econômicas e diferentes formas de propriedade coletiva.</p>
+                <h3>Anarquismo</h3>
+                <p>Critica o Estado e as hierarquias coercitivas, defendendo a autogestão.</p>
+                <h3>Liberalismo</h3>
+                <p>Valoriza as liberdades individuais, a propriedade privada e, em muitas correntes, a limitação do poder estatal.</p>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Revisão</span>
+            <h2>Verificando conceitos</h2>
+            <p>1. O Ludismo defendia a modernização das fábricas por meio do voto.</p>
+            <p class="destaque">Verdadeiro ou falso?</p>
+            <br>
+            <p>2. O Cartismo foi um movimento de massa da classe operária.</p>
+            <p class="destaque">Verdadeiro ou falso?</p>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Respostas</span>
+            <h2>Gabarito</h2>
+            <div class="cartao">
+                <h3>1. Falso</h3>
+                <p>O Ludismo ficou conhecido pela destruição de máquinas como forma de protesto.</p>
+                <h3>2. Verdadeiro</h3>
+                <p>O Cartismo mobilizou trabalhadores britânicos em torno de reivindicações políticas.</p>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Organização dos trabalhadores</span>
+            <h2>O surgimento dos sindicatos</h2>
+            <ul>
+                <li>As Trade Unions inglesas foram precursoras dos sindicatos modernos.</li>
+                <li>Trabalhadores se organizaram para reivindicar melhorias.</li>
+                <li>A greve tornou-se uma ferramenta de pressão.</li>
+                <li>As associações lutaram pelo reconhecimento legal.</li>
+                <li>Essas mobilizações contribuíram para melhorias nas condições de trabalho.</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Revoluções de 1848</span>
+            <h2>A Primavera dos Povos</h2>
+            <div class="grade">
+                <div class="cartao">
+                    <div class="numero">01</div>
+                    <h3>Fevereiro</h3>
+                    <p>Queda da monarquia na França e proclamação da República.</p>
+                </div>
+                <div class="cartao">
+                    <div class="numero">02</div>
+                    <h3>Março</h3>
+                    <p>Revoltas em diferentes regiões da Europa.</p>
+                </div>
+                <div class="cartao">
+                    <div class="numero">03</div>
+                    <h3>Junho</h3>
+                    <p>Levantes operários em Paris foram reprimidos.</p>
+                </div>
+                <div class="cartao">
+                    <div class="numero">04</div>
+                    <h3>Desfecho</h3>
+                    <p>Forças conservadoras recuperaram o controle em várias regiões.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Conquista trabalhista</span>
+            <h2>A jornada de dez horas</h2>
+            <p class="pergunta">10 horas</p>
+            <p>A lei inglesa de 1847 limitou a jornada de trabalho de mulheres e jovens em determinadas indústrias têxteis.</p>
+            <p>Foi uma conquista importante em uma longa história de reivindicações trabalhistas.</p>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">História política</span>
+            <h2>A Comuna de Paris (1871)</h2>
+            <ul>
+                <li>Experiência revolucionária de governo popular em Paris.</li>
+                <li>Durou aproximadamente 72 dias.</li>
+                <li>Defendeu reformas sociais e mudanças na organização do trabalho.</li>
+                <li>Terminou após uma violenta repressão conhecida como Semana Sangrenta.</li>
+                <li>Tornou-se referência para diversos movimentos socialistas.</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Direitos sociais</span>
+            <h2>O papel das mulheres</h2>
+            <p>As mulheres operárias enfrentavam baixos salários, condições difíceis nas fábricas e responsabilidades domésticas.</p>
+            <p>Elas participaram de greves, associações de trabalhadores e movimentos sufragistas.</p>
+            <p class="destaque">A luta também envolvia o direito ao voto e a igualdade de direitos.</p>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Atualidade</span>
+            <h2>Legado para o século XXI</h2>
+            <ul>
+                <li>Limites para a jornada de trabalho.</li>
+                <li>Direitos trabalhistas e proteção social.</li>
+                <li>Reconhecimento da organização sindical.</li>
+                <li>Direito de greve em diferentes legislações.</li>
+                <li>Influência na construção de direitos sociais modernos.</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Quiz</span>
+            <h2>Teste seus conhecimentos</h2>
+            <p class="pergunta">Qual movimento social do século XIX ficou conhecido pela destruição de máquinas como forma de protesto?</p>
+            <ul>
+                <li>A) Cartismo</li>
+                <li>B) Ludismo</li>
+                <li>C) Socialismo utópico</li>
+                <li>D) Anarquismo</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Resposta do quiz</span>
+            <h2>Alternativa correta: B</h2>
+            <div class="cartao">
+                <h3>Ludismo</h3>
+                <p>Os ludistas ficaram conhecidos por destruir máquinas em protesto contra as mudanças econômicas e as condições de trabalho da industrialização.</p>
+            </div>
+        </section>
+
+        <section class="slide">
+            <span class="etiqueta">Conclusão</span>
+            <h2>Principais aprendizados</h2>
+            <ul>
+                <li>A industrialização provocou profundas mudanças sociais.</li>
+                <li>Ludismo e Cartismo foram importantes formas de mobilização operária.</li>
+                <li>Socialismo e Anarquismo apresentaram propostas de transformação social.</li>
+                <li>Sindicatos fortaleceram a organização dos trabalhadores.</li>
+                <li>As lutas do século XIX influenciaram direitos que contin
